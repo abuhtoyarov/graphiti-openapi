@@ -14,7 +14,7 @@ require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
 require_relative '../spec/dummy/config/boot'
 Dir.chdir 'spec/dummy' do
   system "bin/rails yarn:install" unless File.file?("node_modules/.bin/webpack")
-  require "webpacker"
-  require "webpacker/webpack_runner"
-  Webpacker::WebpackRunner.run(ARGV)
+  require "shakapacker"
+  require "shakapacker/webpack_runner"
+  Shakapacker::WebpackRunner.run(ARGV)
 end

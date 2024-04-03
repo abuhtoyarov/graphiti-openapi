@@ -3,7 +3,7 @@ require "dry-types"
 
 module Graphiti::OpenAPI
   module Types
-    include Dry::Types.module
+    include Dry.Types()
 
     Pathname = Types.Constructor(::Pathname, Kernel.method(:Pathname))
   end

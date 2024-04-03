@@ -5,27 +5,6 @@ require_relative "attribute"
 require_relative "relationship"
 
 module Graphiti::OpenAPI
-  class ResourceData < Struct
-    attribute :name, Types::String
-    attribute :type, Types::String
-    attribute :description, Types::String.optional
-    attribute :attributes, Types::Hash.map(Types::Symbol, AttributeData)
-    attribute :extra_attributes, Types::Hash.map(Types::Symbol, AttributeData)
-    attribute :sorts, Types::Hash.map(Types::Symbol, Types::Hash)
-    attribute :filters, Types::Hash.map(Types::Symbol, Types::Hash)
-    attribute :relationships, Types::Hash.map(Types::Symbol, RelationshipData)
-
-    def relationships
-      Relationships.load(self)
-    end
-
-    def relationships?
-      relationships.any?
-    end
-
-    memoize :relationships
-  end
-
   class Resource < ResourceData
     include Parameters
 
@@ -323,20 +302,4 @@ module Graphiti::OpenAPI
     end
   end
 
-  class Resources < Hash
-    # @param [<ResourceData>]
-    def self.load(schema, data = schema.__attributes__[:resources])
-      data.each_with_object(new) do |resource, result|
-        result[resource.name] = Resource.new(resource.to_hash.merge(schema: schema))
-      end
-    end
-
-    def by_model(model)
-      fetch("#{model}Resource")
-    end
-
-    def by_type(type)
-      values.detect { |resource| resource.type = type }
-    end
-  end
 end
