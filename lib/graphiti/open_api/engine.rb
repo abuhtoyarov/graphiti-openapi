@@ -1,7 +1,7 @@
 require "rails"
 require "responders"
 require "graphiti"
-require "webpacker"
+require "shakapacker"
 
 module Graphiti
   module OpenAPI
