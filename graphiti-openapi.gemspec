@@ -32,7 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "graphiti", ">= 1.2.0"
   spec.add_runtime_dependency "dry-struct", ">= 0.15.0", "< 2.0"
   spec.add_runtime_dependency "transproc"
-  spec.add_runtime_dependency "shakapacker"
 
   spec.add_development_dependency "bundler", ">= 2.0"
   spec.add_development_dependency "rake", ">= 10.0"
